@@ -1,0 +1,163 @@
+echo "Updating and Upgrading"
+apt-get update && apt-get upgrade -y
+
+echo "Installing Components"
+apt -y install nginx unzip tree
+
+rm /etc/nginx/sites-available/default
+nano /etc/nginx/sites-available/default
+
+echo "#                                                                                       :80
+server {
+listen 80 default_server;
+listen [::]:80 default_server;
+return 301 https://down.finetv.biz/;
+}
+#                                                                                       :443
+server {
+server_name down.finetv.biz;
+listen 443 ssl default_server;
+listen [::]:443 ssl default_server;
+#include snippets/self-signed.conf;
+#include snippets/ssl-params.conf;
+root /var/www/html;
+index index.html index.htm index.nginx-debian.html;
+try_files $uri $uri/ =404;
+error_page 400 /;
+error_page 401 /;
+error_page 402 /;
+error_page 403 /;
+error_page 404 /;
+error_page 405 /;
+error_page 406 /;
+error_page 407 /;
+error_page 408 /;
+error_page 409 /;
+error_page 500 /;
+error_page 502 /;
+error_page 503 /;
+error_page 504 /;
+error_page 505 /;
+}
+#                                                                                       :8880
+server {
+listen 8880 default_server;
+listen [::]:8880 default_server;
+return 301 https://down.finetv.biz/;
+}" > /etc/nginx/sites-available/default
+
+echo "server {
+listen 80;
+server_name 35.203.106.119;
+return 301 http://down.finetv.biz;
+}
+server {
+listen 443;
+server_name 35.203.106.119;
+return 301 https://down.finetv.biz;
+}
+server {
+listen 8880;
+server_name 35.203.106.119;
+return 301 http://down.finetv.biz;
+}" > /etc/nginx/conf.d/default.conf
+
+service nginx restart
+
+rm -rf /var/www/html
+mkdir /var/www/html
+
+cd /var/www/html
+wget -O background.png https://pbs.twimg.com/media/C6pzgnYVwAAQ6dE.jpg:large
+wget -O logo.png https://i.ibb.co/t2W7QwS/logo.png
+wget -O favicon https://realfavicongenerator.net/files/e331234ce56d2175d94f06750b6d9cc2c093ea34/favicon_package_v0.16.zip
+
+unzip favicon
+tree
+
+echo "<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+                    <link rel="manifest" href="/site.webmanifest">
+                        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+                            <meta name="msapplication-TileColor" content="#2d89ef">
+                                <meta name="theme-color" content="#ffffff">
+                                    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Be Right Back</title>
+            <style>
+                body, html {
+                    height: 100%;
+                    margin: 0;
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+            * {
+                box-sizing: border-box;
+            }
+            .bg-image {
+                /* The image used */
+                background-image: url("/background.png");
+                /* Add the blur effect */
+                filter: blur(8px);
+                -webkit-filter: blur(8px);
+                /* Full height */
+                height: 100%;
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            /* Position text in the middle of the page/image */
+            .bg-text {
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+                color: white;
+                font-weight: bold;
+                border: 3px solid #f1f1f1;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                width: 80%;
+                padding: 20px;
+                text-align: center;
+            }
+            </style>
+            </head>
+    <body>
+        <div class="bg-image"></div>
+        <div class="bg-text">
+            <a href="/"><img src="/logo.png" alt="logo" width="150" height="150"></a>
+            <h1>We&rsquo;ll be back soon!</h1>
+            <div>
+                <h2><p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.</p></h3>
+                    <h3><p>We&rsquo;ll be back online shortly!</p>
+                        <p>Estimated downtime: 20 minutes</p>
+                        <p><small><a href="http://finetv.biz" target="_blank"><font color="white"> http://finetv.biz</a></small></p>
+            </div>
+        </div></body></html>" > index.html
+        
+echo "down" > /etc/hostname
+
+echo "
+127.0.0.1 localhost
+127.0.0.1 35.203.106.119
+127.0.0.1 down.finetv.biz
+127.0.0.1 down
+# The following lines are desirable for IPv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+169.254.169.254 metadata.google.internal metadata" > nano /etc/hosts
+
+echo "Rebooting"
+reboot
+
+
