@@ -42,8 +42,7 @@ apt -y install nginx unzip tree
 echo "Setting Up Nginx"
 rm /etc/nginx/sites-available/default
 
-echo "#                                                                                       :80
-server {
+echo "
 server {
 server_name "Enter your IP / Domain here";
 listen 80;
