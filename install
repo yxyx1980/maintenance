@@ -16,6 +16,8 @@ smallLoader() {
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
 
+apt update
+
 echo "Installing Components"
 apt -y install nginx unzip tree
 
