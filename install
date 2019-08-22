@@ -152,9 +152,7 @@ echo "<!DOCTYPE html>
                         <p><small><a href="Enter your IP / Domain here" target="_blank"><font color="white"> Enter your IP / Domain here</a></small></p>
             </div>
         </div></body></html>" > index.html
-echo " "
-cd
-echo " "
+
 echo "Modifying hostname"
 echo "down" > /etc/hostname
 
@@ -183,4 +181,9 @@ echo "Your IP Address:"
 curl ipinfo.io/ip
 echo " "
 echo "DONE"
+echo " "
+echo " "
+echo " "
+echo "SYSTEM RESTART NEEDED"
+
 
