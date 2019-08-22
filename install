@@ -45,6 +45,7 @@ clear
 
 echo " "
 echo " "
+
 echo -ne "${BGreen}This script installs a scheduled maintenance html page.  THIS WILL REMOVE ALL YOUR NGINX CONFIGURATIONS.${Reset}\n
 ${BWhite}Do you want continue (y/n):${Reset} ";
 read AGREE
@@ -250,7 +251,15 @@ echo " "
 echo "Your IP Address:"
 curl ipinfo.io/ip
 echo " "
-echo " "
+
+echo -ne "${BGreen}Would you like to install SSL?${Reset}\n
+${BWhite}Do you want continue (y/n):${Reset} ";
+read AGREE
+if [ "$AGREE" != "y" ]; then
+	echo -ne "${BWhite}Exiting... ${Reset}\n";
+	exit;
+fi
+
 echo " "
 echo "DONE"
 echo " "
