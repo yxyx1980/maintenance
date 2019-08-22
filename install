@@ -258,9 +258,30 @@ echo "
 server {
 	listen 80;
         listen [::]:80;
-	listen 443 ssl;
 #	server_name your_domain.com_or_your_ip;
-	rewrite ^ https://${WAN}${CEND} permanent;
+	rewrite ^ https://$host$request_uri? permanent;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	error_page 400 /;
+	error_page 401 /;
+	error_page 402 /;
+	error_page 403 /;
+	error_page 404 /;
+	error_page 405 /;
+	error_page 406 /;
+	error_page 407 /;
+	error_page 408 /;
+	error_page 409 /;
+	error_page 500 /;
+	error_page 502 /;
+	error_page 503 /;
+	error_page 504 /;
+	error_page 505 /;
+}
+server {
+	listen 443;
+        listen [::]:443;
+#	server_name your_domain.com_or_your_ip;
 	ssl_certificate /etc/nginx/ssl/nginx.crt;
         ssl_certificate_key /etc/nginx/ssl/nginx.key;
 	root /var/www/html;
