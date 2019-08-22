@@ -176,7 +176,8 @@ sudo service nginx restart
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
 
-echo -e "IP WAN       : ${CGREEN}${WAN}${CEND}"
+echo "Your IP Address:"
+curl ipinfo.io/ip
 
 echo "Please Modify: "nano /etc/nginx/sites-available/default" and reboot your server"
 
