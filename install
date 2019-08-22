@@ -252,8 +252,6 @@ clear
 echo " "
 echo "Setting Up SSL"
 echo " "
-mkdir /etc/nginx/ssl
-echo " "
 echo "
 server {
 	listen 80;
@@ -303,9 +301,11 @@ server {
 	error_page 505 /;
 }" > /etc/nginx/sites-available/default
 echo " "
-echo "SSL lasts 10 Years"
-echo " "
-sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+add-apt-repository ppa:certbot/certbot
+apt-get update
+apt-get install python-certbot-nginx
+nginx -t && nginx -s reload
+echo "0 12 * * * /usr/bin/certbot renew --quiet" > crontab -e
 service nginx restart
 
 clear
@@ -362,6 +362,14 @@ echo " "
 echo " "
 echo " "
 echo "DONE"
+echo " "
+echo " "
+echo " "
+echo "To finish setting up SSL"
+echo " "
+echo "Please type:"
+echo "sudo certbot --nginx -d (your domain/hostname)"
+echo "and follow the setup"
 echo " "
 echo " "
 echo " "
