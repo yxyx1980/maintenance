@@ -1,7 +1,10 @@
 echo "Starting"
 echo "1"
+echo " "
 echo "2"
+echo " "
 echo "3"
+echo " "
 
 echo -ne "${BGreen}This script is a test script${Reset}\n
 ${BWhite}Do you want continue (y/n):${Reset} ";
@@ -34,15 +37,13 @@ echo "#                                                                         
 server {
 listen 80 default_server;
 listen [::]:80 default_server;
-return 301 (Enter your IP / Domain here);
+return 301 "Enter your IP / Domain here";
 }
 #                                                                                       :443
 server {
-server_name Enter your IP / Domain here);
+server_name "Enter your IP / Domain here";
 listen 443 ssl default_server;
 listen [::]:443 ssl default_server;
-include snippets/self-signed.conf;
-include snippets/ssl-params.conf;
 root /var/www/html;
 index index.html index.htm index.nginx-debian.html;
 try_files $uri $uri/ =404;
@@ -66,16 +67,15 @@ error_page 505 /;
 server {
 listen 8880 default_server;
 listen [::]:8880 default_server;
-return 301 Enter your IP / Domain here);
+return 301 "Enter your IP / Domain here";
 }" > /etc/nginx/sites-available/default
-
+echo " "
 echo "Restarting Nginx"
 service nginx restart
-
+echo " "
 echo "Setting Up Error Page"
 rm -rf /var/www/html
 mkdir /var/www/html
-
 cd /var/www/html
 wget -O background.png https://pbs.twimg.com/media/C6pzgnYVwAAQ6dE.jpg:large
 wget -O logo.png https://i.ibb.co/t2W7QwS/logo.png
@@ -149,11 +149,10 @@ echo "<!DOCTYPE html>
                         <p><small><a href="Enter your IP / Domain here" target="_blank"><font color="white"> Enter your IP / Domain here</a></small></p>
             </div>
         </div></body></html>" > index.html
-
+echo " "
 cd
-
+echo " "
 echo "Modifying hostname"
-
 echo "down" > /etc/hostname
 
 echo "
@@ -168,20 +167,16 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 169.254.169.254 metadata.google.internal metadata" > nano /etc/hosts
 
-echo "Installing SSL"
-mkdir /etc/nginx/ssl
-sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
-
 echo "Restarting Nginx"
 sudo service nginx restart
-
+echo " "
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
-
+echo " "
 echo "Your IP Address:"
 curl ipinfo.io/ip
-
+echo " "
 echo "Please Modify: "nano /etc/nginx/sites-available/default" and reboot your server"
-
+echo " "
 echo "DONE"
 
