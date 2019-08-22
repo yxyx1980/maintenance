@@ -9,6 +9,8 @@ echo " "
 echo "3"
 echo " "
 
+clear
+
 echo -ne "${BGreen}This script is a test script${Reset}\n
 ${BWhite}Do you want continue (y/n):${Reset} ";
 read AGREE
@@ -27,6 +29,8 @@ echo "2"
 echo " "
 echo "3"
 echo " "
+
+clear
 
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
