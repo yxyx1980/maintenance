@@ -246,7 +246,7 @@ echo " "
 echo " "
 speedtest-cli
 echo " "
-echo " "
+clear
 echo " "
 echo "Your IP Address:"
 curl ipinfo.io/ip
