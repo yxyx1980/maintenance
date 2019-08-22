@@ -268,7 +268,7 @@ echo " "
 echo "Your Internet Speed is:"
 echo " "
 echo " "
-speedtest-cli
+echo "speedtest-cli"
 echo " "
 clear
 echo " "
