@@ -45,7 +45,7 @@ clear
 
 echo " "
 echo " "
-echo -ne "${BGreen}This script is a test script which installs a scheduled maintenance html page.  THIS WILL REMOVE ALL YOUR NGINX CONFIGURATIONS.${Reset}\n
+echo -ne "${BGreen}This script installs a scheduled maintenance html page.  THIS WILL REMOVE ALL YOUR NGINX CONFIGURATIONS.${Reset}\n
 ${BWhite}Do you want continue (y/n):${Reset} ";
 read AGREE
 if [ "$AGREE" != "y" ]; then
