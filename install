@@ -257,7 +257,6 @@ server {
 	listen 80;
         listen [::]:80;
 #	server_name your_domain.com_or_your_ip;
-	rewrite ^ https://$host$request_uri? permanent;
 	root /var/www/html;
 	index index.html index.htm index.nginx-debian.html;
 	error_page 400 /;
@@ -277,14 +276,14 @@ server {
 	error_page 505 /;
 }
 server {
-	listen 443;
-        listen [::]:443;
-#	server_name your_domain.com_or_your_ip;
-	ssl_certificate /etc/nginx/ssl/nginx.crt;
-        ssl_certificate_key /etc/nginx/ssl/nginx.key;
-	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
-	error_page 400 /;
+    listen 443;
+    listen [::]:443;
+    root /var/www/html;
+#   server_name your_domain.com_or_your_ip;
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    	error_page 400 /;
 	error_page 401 /;
 	error_page 402 /;
 	error_page 403 /;
