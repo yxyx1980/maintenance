@@ -5,7 +5,6 @@ echo "Installing Components"
 apt -y install nginx unzip tree
 
 rm /etc/nginx/sites-available/default
-nano /etc/nginx/sites-available/default
 
 echo "#                                                                                       :80
 server {
