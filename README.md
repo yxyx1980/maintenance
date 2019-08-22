@@ -1,9 +1,11 @@
 <b>Install:</b>
 
-<b>Pleade update before you start</b>
+<b>Pleade update and install git before you start</b>
 
 ```sh
 sudo apt update
+
+sudo apt install git -y
 ```
 
 <b>Start:</b>
