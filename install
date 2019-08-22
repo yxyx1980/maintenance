@@ -150,6 +150,8 @@ echo "<!DOCTYPE html>
             </div>
         </div></body></html>" > index.html
 
+cd
+
 echo "Modifying hostname"
 
 echo "down" > /etc/hostname
