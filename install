@@ -242,16 +242,6 @@ apt-get update && apt-get upgrade -y
 echo " "
 clear
 echo " "
-echo "Preforming Speedtest"
-echo " "
-echo " "
-echo "Your Internet Speed is:"
-echo " "
-echo " "
-speedtest-cli
-echo " "
-clear
-echo " "
 echo "Your IP Address:"
 curl ipinfo.io/ip
 echo " "
@@ -275,7 +265,7 @@ server {
         listen [::]:80;
 	listen 443 ssl;
 #	server_name your_domain.com_or_your_ip;
-	return 301 https://$host$request_uri;
+	rewrite ^ https://$host$request_uri? permanent;
 	ssl_certificate /etc/nginx/ssl/nginx.crt;
         ssl_certificate_key /etc/nginx/ssl/nginx.key;
 	root /var/www/html;
