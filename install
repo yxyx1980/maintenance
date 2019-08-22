@@ -17,6 +17,8 @@ if [ "$AGREE" != "y" ]; then
 	exit;
 fi
 
+clear
+
 echo "Loading"
 echo " "
 echo "1"
