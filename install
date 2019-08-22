@@ -241,7 +241,7 @@ clear
 echo "Preforming Speedtest"
 echo " "
 echo " "
-Your Internet Speed is:
+echo "Your Internet Speed is:"
 echo " "
 echo " "
 speedtest-cli
