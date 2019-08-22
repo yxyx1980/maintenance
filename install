@@ -299,12 +299,12 @@ server {
 	error_page 504 /;
 	error_page 505 /;
 }" > /etc/nginx/sites-available/default
-echo " "
+
 add-apt-repository ppa:certbot/certbot
 apt-get update
 apt-get install python-certbot-nginx
 nginx -t && nginx -s reload
-echo "0 12 * * * /usr/bin/certbot renew --quiet" > crontab -e
+
 service nginx restart
 
 clear
@@ -366,8 +366,11 @@ echo " "
 echo " "
 echo "To finish setting up SSL"
 echo " "
+echo " "
 echo "Please type:"
+echo " "
 echo "sudo certbot --nginx -d (your domain/hostname)"
+echo " "
 echo "and follow the setup"
 echo " "
 echo " "
