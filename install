@@ -40,15 +40,10 @@ rm /etc/nginx/sites-available/default
 
 echo "#                                                                                       :80
 server {
-listen 80 default_server;
-listen [::]:80 default_server;
-return 301 "Enter your IP / Domain here";
-}
-#                                                                                       :443
 server {
 server_name "Enter your IP / Domain here";
-listen 443 ssl default_server;
-listen [::]:443 ssl default_server;
+listen 80;
+listen [::]:80;
 root /var/www/html;
 index index.html index.htm index.nginx-debian.html;
 try_files $uri $uri/ =404;
@@ -67,16 +62,7 @@ error_page 502 /;
 error_page 503 /;
 error_page 504 /;
 error_page 505 /;
-}
-#                                                                                       :8880
-server {
-listen 8880 default_server;
-listen [::]:8880 default_server;
-return 301 "Enter your IP / Domain here";
 }" > /etc/nginx/sites-available/default
-echo " "
-echo "Restarting Nginx"
-service nginx restart
 echo " "
 echo "Setting Up Error Page"
 rm -rf /var/www/html
@@ -172,11 +158,11 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 169.254.169.254 metadata.google.internal metadata" > nano /etc/hosts
 
-echo "Restarting Nginx"
-sudo service nginx restart
 echo " "
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
+echo " "
+clear
 echo " "
 echo "Your IP Address:"
 curl ipinfo.io/ip
