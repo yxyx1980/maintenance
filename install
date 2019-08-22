@@ -260,7 +260,7 @@ server {
         listen [::]:80;
 	listen 443 ssl;
 #	server_name your_domain.com_or_your_ip;
-	rewrite ^ https://${WAN} permanent;
+	rewrite ^ https://${WAN}${CEND} permanent;
 	ssl_certificate /etc/nginx/ssl/nginx.crt;
         ssl_certificate_key /etc/nginx/ssl/nginx.key;
 	root /var/www/html;
