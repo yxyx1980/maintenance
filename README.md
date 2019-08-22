@@ -14,7 +14,7 @@ sudo apt -y install git
 
 git clone https://github.com/snake24564/maintenance
 
-cd test/
+cd maintenance/
 
 chmod +x install
 
