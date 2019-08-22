@@ -1,21 +1,22 @@
-smallLoader() {
-    echo ""
-    echo ""
-    echo -ne '[ + + +             ] 3s \r'
-    sleep 1
-    echo -ne '[ + + + + + +       ] 2s \r'
-    sleep 1
-    echo -ne '[ + + + + + + + + + ] 1s \r'
-    sleep 1
-    echo -ne '[ + + + + + + + + + ] Press [Enter] to start... \r'
-    echo -ne '\n'
+echo -ne "${BGreen}This script is a test script${Reset}\n
+${BWhite}Do you want continue (y/n):${Reset} ";
+read AGREE
+if [ "$AGREE" != "y" ]; then
+	echo -ne "${BWhite}Exiting... ${Reset}\n";
+	exit;
+fi
 
-    read -r
-}
+echo"Starting Script"
+echo" "
+echo"1"
+echo" "
+echo"2"
+echo" "
+echo"3"
+echo" "
 
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
-
 apt update
 
 echo "Installing Components"
@@ -28,10 +29,11 @@ echo "#                                                                         
 server {
 listen 80 default_server;
 listen [::]:80 default_server;
-return 301 https://curl ipinfo.io/ip;
+return 301 (Enter your IP / Domain here);
 }
 #                                                                                       :443
 server {
+server_name Enter your IP / Domain here);
 listen 443 ssl default_server;
 listen [::]:443 ssl default_server;
 include snippets/self-signed.conf;
@@ -59,24 +61,8 @@ error_page 505 /;
 server {
 listen 8880 default_server;
 listen [::]:8880 default_server;
-return 301 https://curl ipinfo.io/ip;
+return 301 Enter your IP / Domain here);
 }" > /etc/nginx/sites-available/default
-
-echo "server {
-#listen 80;
-#server_name 35.203.106.119;
-#return 301 http://down.finetv.biz;
-#}
-#server {
-#listen 443;
-#server_name 35.203.106.119;
-#return 301 https://down.finetv.biz;
-#}
-#server {
-#listen 8880;
-#server_name curl ipinfo.io/ip;
-#return 301 http://down.finetv.biz;
-#}" > /etc/nginx/conf.d/default.conf
 
 echo "Restarting Nginx"
 service nginx restart
@@ -155,7 +141,7 @@ echo "<!DOCTYPE html>
                 <h2><p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.</p></h3>
                     <h3><p>We&rsquo;ll be back online shortly!</p>
                         <p>Estimated downtime: 20 minutes</p>
-                        <p><small><a href="http://finetv.biz" target="_blank"><font color="white"> http://finetv.biz</a></small></p>
+                        <p><small><a href="Enter your IP / Domain here)" target="_blank"><font color="white"> Enter your IP / Domain here)</a></small></p>
             </div>
         </div></body></html>" > index.html
 
@@ -185,25 +171,9 @@ sudo service nginx restart
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
 
+echo -e "IP WAN       : ${CGREEN}${WAN}${CEND}"
+
+echo "Please Modify: "nano /etc/nginx/sites-available/default" and reboot your server"
+
 echo "DONE"
-
-smallLoader() {
-    echo ""
-    echo ""
-    echo -ne '[ + + +             ] 3s \r'
-    sleep 1
-    echo -ne '[ + + + + + +       ] 2s \r'
-    sleep 1
-    echo -ne '[ + + + + + + + + + ] 1s \r'
-    sleep 1
-    echo -ne '[ + + + + + + + + + ] Press [Enter] to reboot server... \r'
-    echo -ne '\n'
-
-    read -r
-}
-
-echo "Rebooting"
-echo 
-reboot
-
 
