@@ -239,7 +239,11 @@ apt-get update && apt-get upgrade -y
 echo " "
 clear
 echo "Preforming Speedtest"
+echo " "
+echo " "
 Your Internet Speed is:
+echo " "
+echo " "
 speedtest-cli
 echo " "
 echo " "
