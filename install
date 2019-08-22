@@ -11,7 +11,7 @@ if [ "$AGREE" != "y" ]; then
 	exit;
 fi
 
-echo "Starting Script"
+echo "Loading"
 echo " "
 echo "1"
 echo " "
