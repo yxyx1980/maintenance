@@ -5,7 +5,7 @@
 ```sh
 sudo apt update
 
-sudo apt install git -y
+sudo apt -y install git
 ```
 
 <b>Start:</b>
