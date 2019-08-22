@@ -12,7 +12,7 @@ sudo apt -y install git
 
 ```sh
 
-git clone https://github.com/snake24564/test
+git clone https://github.com/snake24564/maintenance
 
 cd test/
 
