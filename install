@@ -1,3 +1,8 @@
+echo "Starting"
+echo "1"
+echo "2"
+echo "3"
+
 echo -ne "${BGreen}This script is a test script${Reset}\n
 ${BWhite}Do you want continue (y/n):${Reset} ";
 read AGREE
@@ -6,14 +11,14 @@ if [ "$AGREE" != "y" ]; then
 	exit;
 fi
 
-echo"Starting Script"
-echo" "
-echo"1"
-echo" "
-echo"2"
-echo" "
-echo"3"
-echo" "
+echo "Starting Script"
+echo " "
+echo "1"
+echo " "
+echo "2"
+echo " "
+echo "3"
+echo " "
 
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
@@ -141,7 +146,7 @@ echo "<!DOCTYPE html>
                 <h2><p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.</p></h3>
                     <h3><p>We&rsquo;ll be back online shortly!</p>
                         <p>Estimated downtime: 20 minutes</p>
-                        <p><small><a href="Enter your IP / Domain here)" target="_blank"><font color="white"> Enter your IP / Domain here)</a></small></p>
+                        <p><small><a href="Enter your IP / Domain here" target="_blank"><font color="white"> Enter your IP / Domain here</a></small></p>
             </div>
         </div></body></html>" > index.html
 
