@@ -114,32 +114,11 @@ echo "
 server {
 	listen 80;
         listen [::]:80;
-#	server_name "enter your Domain or IP";
-#	return 301 https://$server_name$request_uri;	
+	listen 443 ssl;
+#	server_name your_domain.com_or_your_ip;
+	ssl_certificate /etc/nginx/ssl/nginx.crt;
+        ssl_certificate_key /etc/nginx/ssl/nginx.key;
 	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
-	error_page 400 /;
-	error_page 401 /;
-	error_page 402 /;
-	error_page 403 /;
-	error_page 404 /;
-	error_page 405 /;
-	error_page 406 /;
-	error_page 407 /;
-	error_page 408 /;
-	error_page 409 /;
-	error_page 500 /;
-	error_page 502 /;
-	error_page 503 /;
-	error_page 504 /;
-	error_page 505 /;
-	
-server {
-    listen 443 ssl http2 default_server;
-    listen [::]:443 ssl http2 default_server;
-    include snippets/self-signed.conf;
-    include snippets/ssl-params.conf;
-    	root /var/www/html;
 	index index.html index.htm index.nginx-debian.html;
 	error_page 400 /;
 	error_page 401 /;
@@ -283,40 +262,16 @@ if [ "$AGREE" != "y" ]; then
 	echo -ne "${BWhite}Exiting... ${Reset}\n";
 	exit;
 fi
+echo " "
+echo "Setting Up SSL"
+echo " "
+mkdir /etc/nginx/ssl
+echo " "
+echo "SSL lasts 10 Years"
+echo " "
+sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+service nginx restart
 
-sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
-sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
-
-echo "
-ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
-ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
-" > /etc/nginx/snippets/self-signed.conf
-
-echo "
-# from https://cipherli.st/
-# and https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html
-ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-ssl_prefer_server_ciphers on;
-ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
-ssl_ecdh_curve secp384r1;
-ssl_session_cache shared:SSL:10m;
-ssl_session_tickets off;
-ssl_stapling on;
-ssl_stapling_verify on;
-resolver 8.8.8.8 8.8.4.4 valid=300s;
-resolver_timeout 5s;
-# Disable preloading HSTS for now.  You can use the commented out header line that includes
-# the "preload" directive if you understand the implications.
-#add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
-add_header Strict-Transport-Security "max-age=63072000; includeSubdomains";
-add_header X-Frame-Options DENY;
-add_header X-Content-Type-Options nosniff;
-ssl_dhparam /etc/ssl/certs/dhparam.pem;
-" > /etc/nginx/snippets/ssl-params.conf
-
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
-sudo nginx -t
-sudo systemctl restart nginx
 
 echo " "
 echo "Your IP Address:"
