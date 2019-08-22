@@ -238,6 +238,7 @@ echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
 echo " "
 clear
+echo " "
 echo "Preforming Speedtest"
 echo " "
 echo " "
@@ -257,11 +258,8 @@ echo "DONE"
 echo " "
 echo " "
 echo " "
-echo "SYSTEM RESTART NEEDED"
+echo "SYSTEM RESTART REQUIRED"
 echo " "
-echo " "
-echo " "
-
 
 
 
