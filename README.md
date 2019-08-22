@@ -1,6 +1,12 @@
 <b>Install:</b>
 
-<b>Pleade update before you start by doing: "sudo apt update"</b>
+<b>Pleade update before you start</b>
+
+```sh
+sudo apt update
+```
+
+<b>Start:</b>
 
 ```sh
 
