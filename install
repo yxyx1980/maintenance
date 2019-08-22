@@ -141,7 +141,6 @@ rm -rf /var/www/html
 mkdir /var/www/html
 cd /var/www/html
 wget -O background.png https://pbs.twimg.com/media/C6pzgnYVwAAQ6dE.jpg:large
-wget -O logo.png https://i.ibb.co/t2W7QwS/logo.png
 wget -O favicon https://realfavicongenerator.net/files/e331234ce56d2175d94f06750b6d9cc2c093ea34/favicon_package_v0.16.zip
 unzip favicon
 tree
@@ -201,12 +200,12 @@ echo "<!DOCTYPE html>
     <body>
         <div class="bg-image"></div>
         <div class="bg-text">
-            <a href="/"><img src="/logo.png" alt="logo" width="150" height="150"></a>
+            <a href="/"><img src="http://www.mhf.org.au/media/zoo/images/yourlogohere_2cb8c31ab01096e7842d781ac311a776.png" alt="logo" width="150" height="150"></a>
             <h1>We&rsquo;ll be back soon!</h1>
             <div>
                 <h2><p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.</p></h3>
                     <h3><p>We&rsquo;ll be back online shortly!</p>
-                        <p>Estimated downtime: 20 minutes</p>
+                        <p>Estimated downtime: ### minutes</p>
                         <p><small><a href="Enter your IP / Domain here" target="_blank"><font color="white"> Enter your IP / Domain here</a></small></p>
             </div>
         </div></body></html>" > index.html
