@@ -1,24 +1,39 @@
+smallLoader() {
+    echo ""
+    echo ""
+    echo -ne '[ + + +             ] 3s \r'
+    sleep 1
+    echo -ne '[ + + + + + +       ] 2s \r'
+    sleep 1
+    echo -ne '[ + + + + + + + + + ] 1s \r'
+    sleep 1
+    echo -ne '[ + + + + + + + + + ] Press [Enter] to start... \r'
+    echo -ne '\n'
+
+    read -r
+}
+
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
 
 echo "Installing Components"
 apt -y install nginx unzip tree
 
+echo "Setting Up Nginx"
 rm /etc/nginx/sites-available/default
 
 echo "#                                                                                       :80
 server {
 listen 80 default_server;
 listen [::]:80 default_server;
-return 301 https://down.finetv.biz/;
+return 301 https://curl ipinfo.io/ip;
 }
 #                                                                                       :443
 server {
-server_name down.finetv.biz;
 listen 443 ssl default_server;
 listen [::]:443 ssl default_server;
-#include snippets/self-signed.conf;
-#include snippets/ssl-params.conf;
+include snippets/self-signed.conf;
+include snippets/ssl-params.conf;
 root /var/www/html;
 index index.html index.htm index.nginx-debian.html;
 try_files $uri $uri/ =404;
@@ -42,27 +57,29 @@ error_page 505 /;
 server {
 listen 8880 default_server;
 listen [::]:8880 default_server;
-return 301 https://down.finetv.biz/;
+return 301 https://curl ipinfo.io/ip;
 }" > /etc/nginx/sites-available/default
 
 echo "server {
-listen 80;
-server_name 35.203.106.119;
-return 301 http://down.finetv.biz;
-}
-server {
-listen 443;
-server_name 35.203.106.119;
-return 301 https://down.finetv.biz;
-}
-server {
-listen 8880;
-server_name 35.203.106.119;
-return 301 http://down.finetv.biz;
-}" > /etc/nginx/conf.d/default.conf
+#listen 80;
+#server_name 35.203.106.119;
+#return 301 http://down.finetv.biz;
+#}
+#server {
+#listen 443;
+#server_name 35.203.106.119;
+#return 301 https://down.finetv.biz;
+#}
+#server {
+#listen 8880;
+#server_name curl ipinfo.io/ip;
+#return 301 http://down.finetv.biz;
+#}" > /etc/nginx/conf.d/default.conf
 
+echo "Restarting Nginx"
 service nginx restart
 
+echo "Setting Up Error Page"
 rm -rf /var/www/html
 mkdir /var/www/html
 
@@ -139,13 +156,13 @@ echo "<!DOCTYPE html>
                         <p><small><a href="http://finetv.biz" target="_blank"><font color="white"> http://finetv.biz</a></small></p>
             </div>
         </div></body></html>" > index.html
-        
+
+echo "Modifying hostname"
+
 echo "down" > /etc/hostname
 
 echo "
 127.0.0.1 localhost
-127.0.0.1 35.203.106.119
-127.0.0.1 down.finetv.biz
 127.0.0.1 down
 # The following lines are desirable for IPv6 capable hosts
 ::1 ip6-localhost ip6-loopback
@@ -156,7 +173,35 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 169.254.169.254 metadata.google.internal metadata" > nano /etc/hosts
 
+echo "Installing SSL"
+mkdir /etc/nginx/ssl
+sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+
+echo "Restarting Nginx"
+sudo service nginx restart
+
+echo "Updating and Upgrading"
+apt-get update && apt-get upgrade -y
+
+echo "DONE"
+
+smallLoader() {
+    echo ""
+    echo ""
+    echo -ne '[ + + +             ] 3s \r'
+    sleep 1
+    echo -ne '[ + + + + + +       ] 2s \r'
+    sleep 1
+    echo -ne '[ + + + + + + + + + ] 1s \r'
+    sleep 1
+    echo -ne '[ + + + + + + + + + ] Press [Enter] to reboot server... \r'
+    echo -ne '\n'
+
+    read -r
+}
+
 echo "Rebooting"
+echo 
 reboot
 
 
