@@ -47,7 +47,7 @@ echo " "
 echo " "
 
 echo -ne "${BGreen}This script installs a scheduled maintenance html page.  THIS WILL REMOVE ALL YOUR NGINX CONFIGURATIONS.${Reset}\n
-${BWhite}Do you want continue (y/n):${Reset} ";
+${BWhite}Do you want continue (Y/N):${Reset} ";
 read AGREE
 if [ "$AGREE" != "y" ]; then
 	echo -ne "${BWhite}Exiting... ${Reset}\n";
@@ -247,7 +247,7 @@ echo " "
 echo "Your Internet Speed is:"
 echo " "
 echo " "
-echo "speedtest-cli"
+speedtest-cli
 echo " "
 clear
 echo " "
@@ -256,7 +256,7 @@ curl ipinfo.io/ip
 echo " "
 
 echo -ne "${BGreen}Would you like to install SSL?${Reset}\n
-${BWhite}Do you want continue (y/n):${Reset} ";
+${BWhite}Do you want continue (Y/N):${Reset} ";
 read AGREE
 if [ "$AGREE" != "y" ]; then
 	echo -ne "${BWhite}Exiting... ${Reset}\n";
