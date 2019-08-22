@@ -44,27 +44,26 @@ rm /etc/nginx/sites-available/default
 
 echo "
 server {
-server_name "Enter your IP / Domain here";
-listen 80;
-listen [::]:80;
-root /var/www/html;
-index index.html index.htm index.nginx-debian.html;
-try_files $uri $uri/ =404;
-error_page 400 /;
-error_page 401 /;
-error_page 402 /;
-error_page 403 /;
-error_page 404 /;
-error_page 405 /;
-error_page 406 /;
-error_page 407 /;
-error_page 408 /;
-error_page 409 /;
-error_page 500 /;
-error_page 502 /;
-error_page 503 /;
-error_page 504 /;
-error_page 505 /;
+	listen 80;
+        listen [::]:80;
+#	server_name "ENTER YOUR IP/DOMAIN HERE";
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	error_page 400 /;
+	error_page 401 /;
+	error_page 402 /;
+	error_page 403 /;
+	error_page 404 /;
+	error_page 405 /;
+	error_page 406 /;
+	error_page 407 /;
+	error_page 408 /;
+	error_page 409 /;
+	error_page 500 /;
+	error_page 502 /;
+	error_page 503 /;
+	error_page 504 /;
+	error_page 505 /;
 }" > /etc/nginx/sites-available/default
 echo " "
 echo "Setting Up Error Page"
@@ -161,6 +160,9 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 169.254.169.254 metadata.google.internal metadata" > nano /etc/hosts
 
+echo "Restarting Nginx"
+service nginx restart
+
 echo " "
 echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
@@ -169,16 +171,6 @@ clear
 echo " "
 echo "Your IP Address:"
 curl ipinfo.io/ip
-echo " "
-echo " "
-echo "Please Modify"
-echo " "
-echo "/etc/nginx/sites-available/default"
-echo " "
-echo "Then do"
-echo " "
-echo "service nginx restart"
-echo " "
 echo " "
 echo "DONE"
 
