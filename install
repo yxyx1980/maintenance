@@ -265,6 +265,7 @@ systemctl reload nginx
 
 clear
 
+rm -rf maintenance/
 echo " "
 echo "Loading"
 echo " "
