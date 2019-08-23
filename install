@@ -300,12 +300,13 @@ server {
 	error_page 505 /;
 }" > /etc/nginx/sites-available/default
 
-add-apt-repository ppa:certbot/certbot
+apt-get -y install software-properties-common
 apt-get update
-apt-get install python-certbot-nginx
-nginx -t && nginx -s reload
-
-service nginx restart
+add-apt-repository ppa:certbot/certbot -y
+apt-get update
+apt-get install python-certbot-nginx -y
+nginx -t
+systemctl reload nginx
 
 clear
 
@@ -369,7 +370,7 @@ echo " "
 echo " "
 echo "Please type:"
 echo " "
-echo "sudo certbot --nginx -d (your domain/hostname)"
+echo "certbot --nginx -d (your domain/hostname)"
 echo " "
 echo "and follow the setup"
 echo " "
