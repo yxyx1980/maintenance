@@ -106,6 +106,8 @@ apt update
 
 echo "Installing Components"
 apt -y install nginx unzip tree nano speedtest-cli
+mkdir /var/www
+mkdir /var/www/html
 
 echo "Setting Up Nginx"
 rm /etc/nginx/sites-available/default
