@@ -238,32 +238,6 @@ echo "Updating and Upgrading"
 apt-get update && apt-get upgrade -y
 echo " "
 clear
-echo " "
-echo "Your IP Address:"
-curl ipinfo.io/ip
-echo " "
-
-echo -ne "${BGreen}NOTE: If you choose to install SSL you NEED a domain${Reset}\n
-${BWhite}Would you like to install SSL? (y/n):${Reset} ";
-read AGREE
-if [ "$AGREE" != "y" ]; then
-	echo -ne "${BWhite}Exiting... ${Reset}\n";
-	exit;
-fi
-clear
-echo " "
-echo "Setting Up SSL"
-echo " "
-
-apt-get -y install software-properties-common
-apt-get update
-add-apt-repository ppa:certbot/certbot -y
-apt-get update
-apt-get install python-certbot-nginx -y
-nginx -t
-systemctl reload nginx
-
-clear
 
 rm -rf maintenance/
 echo " "
@@ -318,17 +292,6 @@ echo " "
 echo " "
 echo " "
 echo "DONE"
-echo " "
-echo " "
-echo " "
-echo "To finish setting up SSL"
-echo " "
-echo " "
-echo "Please type:"
-echo " "
-echo "certbot --nginx -d (your domain)"
-echo " "
-echo "and follow the setup"
 echo " "
 echo " "
 echo " "
