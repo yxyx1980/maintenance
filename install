@@ -243,8 +243,8 @@ echo "Your IP Address:"
 curl ipinfo.io/ip
 echo " "
 
-echo -ne "${BGreen}Would you like to install SSL?${Reset}\n
-${BWhite}Do you want continue (y/n):${Reset} ";
+echo -ne "${BGreen}NOTE: If you choose to install SSL you NEED a domain${Reset}\n
+${BWhite}Would you like to install SSL? (y/n):${Reset} ";
 read AGREE
 if [ "$AGREE" != "y" ]; then
 	echo -ne "${BWhite}Exiting... ${Reset}\n";
@@ -326,7 +326,7 @@ echo " "
 echo " "
 echo "Please type:"
 echo " "
-echo "certbot --nginx -d (your domain/hostname)"
+echo "certbot --nginx -d (your domain)"
 echo " "
 echo "and follow the setup"
 echo " "
