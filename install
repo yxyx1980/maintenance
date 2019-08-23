@@ -105,7 +105,7 @@ apt-get update && apt-get upgrade -y
 apt update
 
 echo "Installing Components"
-apt -y install nginx unzip tree nano speedtest-cli
+apt -y install nginx unzip tree nano speedtest-cli curl
 mkdir /var/www
 mkdir /var/www/html
 
