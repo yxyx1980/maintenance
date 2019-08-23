@@ -252,53 +252,6 @@ clear
 echo " "
 echo "Setting Up SSL"
 echo " "
-echo "
-server {
-	listen 80;
-        listen [::]:80;
-#	server_name your_domain.com_or_your_ip;
-	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
-	error_page 400 /;
-	error_page 401 /;
-	error_page 402 /;
-	error_page 403 /;
-	error_page 404 /;
-	error_page 405 /;
-	error_page 406 /;
-	error_page 407 /;
-	error_page 408 /;
-	error_page 409 /;
-	error_page 500 /;
-	error_page 502 /;
-	error_page 503 /;
-	error_page 504 /;
-	error_page 505 /;
-}
-server {
-    listen 443;
-    listen [::]:443;
-    root /var/www/html;
-#   server_name your_domain.com_or_your_ip;
-    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    	error_page 400 /;
-	error_page 401 /;
-	error_page 402 /;
-	error_page 403 /;
-	error_page 404 /;
-	error_page 405 /;
-	error_page 406 /;
-	error_page 407 /;
-	error_page 408 /;
-	error_page 409 /;
-	error_page 500 /;
-	error_page 502 /;
-	error_page 503 /;
-	error_page 504 /;
-	error_page 505 /;
-}" > /etc/nginx/sites-available/default
 
 apt-get -y install software-properties-common
 apt-get update
